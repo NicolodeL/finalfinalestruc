@@ -182,7 +182,7 @@ public class Interfaz extends JFrame {
     }
 
     private void cargarExperimentos() {
-        File folder = new File("Experimentos/");
+        File folder = new File("src/main/resources/ExperimentosGuardados");
         File[] listOfFiles = folder.listFiles();
 
         if (listOfFiles != null) {
