@@ -28,6 +28,13 @@ public class Experimento implements Serializable {
         return this.nombre;
     }
 
+    public String getInformacionDetallada() {
+        // Aquí debes devolver una cadena con toda la información del experimento
+        // Por ejemplo:
+        return "Nombre del experimento: " + nombre ;
+        // ... y así sucesivamente para todos los campos del experimento
+    }
+
 
 }
 

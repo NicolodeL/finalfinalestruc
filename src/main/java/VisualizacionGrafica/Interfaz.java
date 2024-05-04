@@ -252,7 +252,10 @@ public class Interfaz extends JFrame {
         for (int i = 0; i < model.getSize(); i++) {
             Experimento experimento = model.getElementAt(i);
             try {
-                Almacenamiento.guardarExperimento(experimento, experimento.getNombre() + ".ser");
+                String informacion = experimento.getInformacionDetallada();
+                try (PrintWriter out = new PrintWriter(new FileWriter("experimento_" + experimento.getNombre() + ".txt", true))) {
+                    out.println(informacion);
+                }
             } catch (IOException e) {
                 JOptionPane.showMessageDialog(this, "Error al guardar el experimento " + experimento.getNombre());
             }
