@@ -249,9 +249,8 @@ public class Interfaz extends JFrame {
         for (int i = 0; i < model.getSize(); i++) {
             Experimento experimento = model.getElementAt(i);
             try {
-                String informacionExperimento = experimento.getInformacionDetallada();
-                try (PrintWriter out = new PrintWriter(new FileWriter("src/main/resources/ExperimentosGuardados/experimento_" + experimento.getNombre() + ".txt", true))) {
-                    out.println(informacionExperimento);
+                try (PrintWriter out = new PrintWriter(new FileWriter("src/main/resources/ExperimentosGuardados/experimento_" + experimento.getNombre() + ".txt", false))) {
+                    out.println("Nombre del experimento: " + experimento.getNombre());
                     for (Bacteria bacteria : experimento.obtenerBacterias()) {
                         String informacionBacteria = bacteria.getInformacionDetallada();
                         out.println(informacionBacteria);
