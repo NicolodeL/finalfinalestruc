@@ -180,7 +180,15 @@ public class Interfaz extends JFrame {
     }
 
     private void guardarExperimentos() {
-        // Aquí irá el código para guardar los experimentos
+        DefaultListModel<Experimento> model = (DefaultListModel<Experimento>) experimentoList.getModel();
+        for (int i = 0; i < model.getSize(); i++) {
+            Experimento experimento = model.getElementAt(i);
+            try {
+                Almacenamiento.guardarExperimento(experimento, experimento.getNombre() + ".ser");
+            } catch (IOException e) {
+                JOptionPane.showMessageDialog(this, "Error al guardar el experimento " + experimento.getNombre());
+            }
+        }
     }
 
     private void cargarExperimentos() {
