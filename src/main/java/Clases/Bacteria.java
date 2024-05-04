@@ -2,8 +2,6 @@ package Clases;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
-import java.util.ArrayList;
 
 public class Bacteria implements Serializable {
     private String nombre;
@@ -28,6 +26,11 @@ public class Bacteria implements Serializable {
         this.diaIncrementoComida = diaIncrementoComida;
         this.comidaDiaIncremento = comidaDiaIncremento;
         this.comidaFinal = comidaFinal;
+    }
+
+    @Override
+    public String toString() {
+        return nombre;
     }
 
     public int calcularComida(int dia) {
