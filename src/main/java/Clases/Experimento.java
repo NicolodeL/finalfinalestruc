@@ -6,9 +6,11 @@ import java.util.List;
 
 public class Experimento implements Serializable {
     private List<Bacteria> bacterias;
+    private String nombre;
 
-    public Experimento() {
+    public Experimento(String nombre) {
         this.bacterias = new ArrayList<>();
+        this.nombre = this.nombre;
     }
 
     public void agregarBacteria(Bacteria bacteria) {
@@ -17,6 +19,9 @@ public class Experimento implements Serializable {
 
     public List<Bacteria> obtenerBacterias() {
         return this.bacterias;
+    }
+    public String getNombre() {
+        return this.nombre;
     }
 }
 
