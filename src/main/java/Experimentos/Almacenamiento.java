@@ -6,7 +6,7 @@ import java.io.*;
 
 public class Almacenamiento {
     public static void guardarExperimento(Experimento experimento, String nombreArchivo) throws IOException {
-        File directory = new File("src/main/java/ExperimentosGuardados");
+        File directory = new File("src/main/resources/ExperimentosGuardados");
         if (!directory.exists()) {
             directory.mkdirs();
         }
@@ -16,7 +16,7 @@ public class Almacenamiento {
     }
 
     public static Experimento cargarExperimento(String nombreArchivo) throws IOException, ClassNotFoundException {
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("Experimentos/" + nombreArchivo))) {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("src/main/resources/ExperimentosGuardados/" + nombreArchivo))) {
             return (Experimento) ois.readObject();
         }
     }
