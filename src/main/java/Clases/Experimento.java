@@ -27,5 +27,7 @@ public class Experimento implements Serializable {
     public String getNombre() {
         return this.nombre;
     }
+
+
 }
 

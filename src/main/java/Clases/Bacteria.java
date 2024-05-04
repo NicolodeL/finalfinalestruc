@@ -46,5 +46,7 @@ public class Bacteria implements Serializable {
         return 0; // Cambiar esto por la implementación correcta
     }
 
+
+
 }
 

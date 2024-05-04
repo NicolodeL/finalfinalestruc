@@ -20,6 +20,7 @@ import java.util.Date;
 public class Interfaz extends JFrame {
     private JList<Experimento> experimentoList;
     private JList<Bacteria> bacteriaList;
+    private JButton agregarPoblacionButton;
     private JButton addButton;
     private JButton saveButton;
     private JButton loadButton;
@@ -40,6 +41,7 @@ public class Interfaz extends JFrame {
         experimentoList = new JList<>();
         bacteriaList = new JList<>();
         experimentoList.setModel(new DefaultListModel<Experimento>());
+        agregarPoblacionButton = new JButton("Agregar Población");
         addButton = new JButton("Agregar Experimento");
         saveButton = new JButton("Guardar Experimentos");
         loadButton = new JButton("Cargar Experimentos");
@@ -125,6 +127,26 @@ public class Interfaz extends JFrame {
             }
         });
 
+        informacionButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Experimento experimentoSeleccionado = experimentoList.getSelectedValue();
+                Bacteria bacteriaSeleccionada = bacteriaList.getSelectedValue();
+                if (experimentoSeleccionado != null && bacteriaSeleccionada != null) {
+                    String informacionExperimento = experimentoSeleccionado.toString(); // Asume que tienes un método toString() en la clase Experimento que devuelve toda la información del experimento
+                    String informacionBacteria = bacteriaSeleccionada.toString(); // Asume que tienes un método toString() en la clase Bacteria que devuelve toda la información de la bacteria
+                    String informacion = informacionExperimento + "\n" + informacionBacteria;
+                    JOptionPane.showMessageDialog(null, informacion);
+
+                    try (PrintWriter out = new PrintWriter(new FileWriter("experimento_" + experimentoSeleccionado.getNombre() + ".txt", true))) {
+                        out.println(informacion);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            }
+        });
+
 
 
         saveButton.addActionListener(e -> guardarExperimentos());
@@ -146,78 +168,70 @@ public class Interfaz extends JFrame {
             JOptionPane.showMessageDialog(this, "Por favor, selecciona un experimento");
             return;
         }
-
-        // Definición de las variables de la bacteria
-        String nombre;
-        Date fechaInicio;
-        Date fechaFin;
-        int numBacteriasIniciales;
-        double temperatura;
-        String condicionLuminosidad;
-        int comidaInicial;
-        int diaIncrementoComida;
-        int comidaDiaIncremento;
-        int comidaFinal;
-
-        nombre = JOptionPane.showInputDialog(this, "Introduce el nombre de la población");
-
+        String nombre = JOptionPane.showInputDialog(this, "Introduce el nombre de la población");
         String fechaInicioStr = JOptionPane.showInputDialog(this, "Introduce la fecha de inicio de la población (dd/MM/yyyy)");
+        Date fechaInicio = null;
         try {
             fechaInicio = new SimpleDateFormat("dd/MM/yyyy").parse(fechaInicioStr);
         } catch (ParseException e) {
             JOptionPane.showMessageDialog(this, "La fecha de inicio debe estar en el formato correcto (dd/MM/yyyy)");
             return;
         }
-
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(fechaInicio);
         calendar.add(Calendar.DATE, 30);
-        fechaFin = calendar.getTime();
+        Date fechaFin = calendar.getTime();
 
-        numBacteriasIniciales = Integer.parseInt(JOptionPane.showInputDialog(this, "Introduce el número de bacterias iniciales"));
+        String numBacteriasInicialesStr = JOptionPane.showInputDialog(this, "Introduce el número de bacterias iniciales");
+        int numBacteriasIniciales = Integer.parseInt(numBacteriasInicialesStr);
         if (numBacteriasIniciales < 0) {
             JOptionPane.showMessageDialog(this, "El número de bacterias iniciales no puede ser negativo");
             return;
         }
 
-        temperatura = Double.parseDouble(JOptionPane.showInputDialog(this, "Introduce la temperatura a la que se someterán las bacterias"));
+        String temperaturaStr = JOptionPane.showInputDialog(this, "Introduce la temperatura a la que se someterán las bacterias");
+        int temperatura = Integer.parseInt(temperaturaStr);
         if (temperatura < 0) {
             JOptionPane.showMessageDialog(this, "La temperatura no puede ser negativa");
             return;
         }
 
         String[] condiciones = {"Alta", "Media", "Baja"};
-        condicionLuminosidad = (String) JOptionPane.showInputDialog(this, "Selecciona las condiciones de luminosidad", "Luminosidad", JOptionPane.QUESTION_MESSAGE, null, condiciones, condiciones[0]);
+        String condicionLuminosidad = (String) JOptionPane.showInputDialog(this, "Selecciona las condiciones de luminosidad", "Luminosidad", JOptionPane.QUESTION_MESSAGE, null, condiciones, condiciones[0]);
 
-        comidaInicial = Integer.parseInt(JOptionPane.showInputDialog(this, "Introduce la cantidad inicial de comida que se le dará el primer día"));
+        String comidaInicialStr = JOptionPane.showInputDialog(this, "Introduce la cantidad inicial de comida que se le dará el primer día");
+        int comidaInicial = Integer.parseInt(comidaInicialStr);
         if (comidaInicial < 0 || comidaInicial >= 300) {
             JOptionPane.showMessageDialog(this, "La cantidad inicial de comida debe ser un valor entero menor que 300");
             return;
         }
 
-        diaIncrementoComida = Integer.parseInt(JOptionPane.showInputDialog(this, "Introduce el día hasta el cual se debe incrementar la cantidad de comida"));
+        String diaIncrementoComidaStr = JOptionPane.showInputDialog(this, "Introduce el día hasta el cual se debe incrementar la cantidad de comida");
+        int diaIncrementoComida = Integer.parseInt(diaIncrementoComidaStr);
         if (diaIncrementoComida <= 0 || diaIncrementoComida >= 30) {
             JOptionPane.showMessageDialog(this, "El día hasta el cual se debe incrementar la cantidad de comida debe ser un valor entero mayor que 0 y menor que 30");
             return;
         }
 
-        comidaDiaIncremento = Integer.parseInt(JOptionPane.showInputDialog(this, "Introduce la comida de este día"));
+        String comidaDiaIncrementoStr = JOptionPane.showInputDialog(this, "Introduce la comida de este día");
+        int comidaDiaIncremento = Integer.parseInt(comidaDiaIncrementoStr);
         if (comidaDiaIncremento < 0 || comidaDiaIncremento >= 300) {
             JOptionPane.showMessageDialog(this, "La comida de este día debe ser un valor entero menor que 300");
             return;
         }
 
-        comidaFinal = Integer.parseInt(JOptionPane.showInputDialog(this, "Introduce la cantidad final de comida en el día 30"));
+        String comidaFinalStr = JOptionPane.showInputDialog(this, "Introduce la cantidad final de comida en el día 30");
+        int comidaFinal = Integer.parseInt(comidaFinalStr);
         if (comidaFinal < 0 || comidaFinal >= 300) {
             JOptionPane.showMessageDialog(this, "La cantidad final de comida en el día 30 debe ser un valor entero menor que 300");
             return;
         }
 
-        // Creación de la instancia de Bacteria usando las variables definidas
         Bacteria bacteria = new Bacteria(nombre, fechaInicio, fechaFin, numBacteriasIniciales, temperatura, condicionLuminosidad, comidaInicial, diaIncrementoComida, comidaDiaIncremento, comidaFinal);
         experimento.agregarBacteria(bacteria);
 
         DefaultListModel<Experimento> model = (DefaultListModel<Experimento>) experimentoList.getModel();
+
         int index = model.indexOf(experimento);
         if (index != -1) {
             model.set(index, experimento);
@@ -232,7 +246,9 @@ public class Interfaz extends JFrame {
             bacteriaList.setModel(bacteriaModel);
         }
         bacteriaModel.addElement(bacteria);
+
     }
+
 
     private void guardarExperimentos() {
         DefaultListModel<Experimento> model = (DefaultListModel<Experimento>) experimentoList.getModel();
