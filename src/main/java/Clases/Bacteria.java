@@ -6,7 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class Bacteria implements Serializable {
+ public class Bacteria implements Serializable {
     private String nombre;
     private Date fechaInicio;
     private Date fechaFin;
