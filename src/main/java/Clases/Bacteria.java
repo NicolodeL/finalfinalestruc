@@ -46,19 +46,30 @@ public class Bacteria implements Serializable {
         return 0; // Cambiar esto por la implementación correcta
     }
     public String getInformacionDetallada() {
-        return "Nombre de la bacteria: " + nombre + "\n" +
-                "Fecha de inicio: " + fechaInicio + "\n" +
-                "Fecha de fin: " + fechaFin + "\n" +
-                "Número de bacterias iniciales: " + numBacteriasIniciales + "\n" +
-                "Temperatura: " + temperatura + "\n" +
-                "Condiciones de luminosidad: " + condicionesLuminosidad + "\n" +
-                "Comida inicial: " + comidaInicial + "\n" +
-                "Día de incremento de comida: " + diaIncrementoComida + "\n" +
-                "Comida en el día de incremento: " + comidaDiaIncremento + "\n" +
-                "Comida final: " + comidaFinal;
+        StringBuilder informacion = new StringBuilder();
+        informacion.append("Nombre de la bacteria: ").append(nombre).append("\n")
+                .append("Fecha de inicio: ").append(fechaInicio).append("\n")
+                .append("Fecha de fin: ").append(fechaFin).append("\n")
+                .append("Número de bacterias iniciales: ").append(numBacteriasIniciales).append("\n")
+                .append("Temperatura: ").append(temperatura).append("\n")
+                .append("Condiciones de luminosidad: ").append(condicionesLuminosidad).append("\n")
+                .append("Comida inicial: ").append(comidaInicial).append("\n")
+                .append("Día de incremento de comida: ").append(diaIncrementoComida).append("\n")
+                .append("Comida en el día de incremento: ").append(comidaDiaIncremento).append("\n")
+                .append("Comida final: ").append(comidaFinal).append("\n");
+
+        // Calcular la dosis de alimento para cada día
+        double incrementoDiario = (comidaFinal - comidaInicial) / 29.0; // asumimos que el incremento es lineal
+        for (int dia = 1; dia <= 30; dia++) {
+            double dosisDia = comidaInicial + (dia - 1) * incrementoDiario;
+            informacion.append("Dosis de alimento para el día ").append(dia).append(": ").append(dosisDia).append("\n");
+        }
+
+        return informacion.toString();
     }
-
-
-
 }
+
+
+
+
 
