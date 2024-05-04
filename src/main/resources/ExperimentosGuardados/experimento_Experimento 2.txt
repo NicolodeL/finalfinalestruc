@@ -9,3 +9,13 @@ Comida inicial: 50
 Día de incremento de comida: 20
 Comida en el día de incremento: 73
 Comida final: 7
+Nombre de la bacteria: Poblacion Azul
+Fecha de inicio: Wed Jun 09 00:00:00 CEST 2004
+Fecha de fin: Fri Jul 09 00:00:00 CEST 2004
+Número de bacterias iniciales: 15
+Temperatura: 22.0
+Condiciones de luminosidad: Media
+Comida inicial: 70
+Día de incremento de comida: 18
+Comida en el día de incremento: 140
+Comida final: 12
