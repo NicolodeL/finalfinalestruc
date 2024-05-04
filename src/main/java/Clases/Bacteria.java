@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class Bacteria implements Serializable {
     private String nombre;
@@ -76,16 +77,55 @@ public class Bacteria implements Serializable {
 
     public static Bacteria fromInformacionDetallada(String informacion) throws ParseException {
         String[] lines = informacion.split("\n");
-        String nombre = lines[0].split(": ")[1];
-        Date fechaInicio = new SimpleDateFormat("dd/MM/yyyy").parse(lines[1].split(": ")[1]);
-        Date fechaFin = new SimpleDateFormat("dd/MM/yyyy").parse(lines[2].split(": ")[1]);
-        int numBacteriasIniciales = Integer.parseInt(lines[3].split(": ")[1]);
-        double temperatura = Double.parseDouble(lines[4].split(": ")[1]);
-        String condicionesLuminosidad = lines[5].split(": ")[1];
-        int comidaInicial = Integer.parseInt(lines[6].split(": ")[1]);
-        int diaIncrementoComida = Integer.parseInt(lines[7].split(": ")[1]);
-        int comidaDiaIncremento = Integer.parseInt(lines[8].split(": ")[1]);
-        int comidaFinal = Integer.parseInt(lines[9].split(": ")[1]);
+        String nombre = null;
+        Date fechaInicio = null;
+        Date fechaFin = null;
+        int numBacteriasIniciales = 0;
+        double temperatura = 0.0;
+        String condicionesLuminosidad = null;
+        int comidaInicial = 0;
+        int diaIncrementoComida = 0;
+        int comidaDiaIncremento = 0;
+        int comidaFinal = 0;
+
+        for (String line : lines) {
+            String[] parts = line.split(": ");
+            if (parts.length < 2) {
+                continue;
+            }
+            switch (parts[0]) {
+                case "Nombre de la bacteria":
+                    nombre = parts[1];
+                    break;
+                case "Fecha de inicio":
+                    fechaInicio = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.US).parse(parts[1]);
+                    break;
+                case "Fecha de fin":
+                    fechaFin = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.US).parse(parts[1]);
+                    break;
+                case "Número de bacterias iniciales":
+                    numBacteriasIniciales = Integer.parseInt(parts[1]);
+                    break;
+                case "Temperatura":
+                    temperatura = Double.parseDouble(parts[1]);
+                    break;
+                case "Condiciones de luminosidad":
+                    condicionesLuminosidad = parts[1];
+                    break;
+                case "Comida inicial":
+                    comidaInicial = Integer.parseInt(parts[1]);
+                    break;
+                case "Día de incremento de comida":
+                    diaIncrementoComida = Integer.parseInt(parts[1]);
+                    break;
+                case "Comida en el día de incremento":
+                    comidaDiaIncremento = Integer.parseInt(parts[1]);
+                    break;
+                case "Comida final":
+                    comidaFinal = Integer.parseInt(parts[1]);
+                    break;
+            }
+        }
 
         return new Bacteria(nombre, fechaInicio, fechaFin, numBacteriasIniciales, temperatura, condicionesLuminosidad, comidaInicial, diaIncrementoComida, comidaDiaIncremento, comidaFinal);
     }
