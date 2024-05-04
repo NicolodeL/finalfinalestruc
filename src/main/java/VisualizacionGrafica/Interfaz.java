@@ -21,6 +21,7 @@ public class Interfaz extends JFrame {
         setLayout(new BorderLayout());
 
         experimentoList = new JList<>();
+        experimentoList.setModel(new DefaultListModel<Experimento>());
         addButton = new JButton("Agregar Experimento");
         saveButton = new JButton("Guardar Experimentos");
         loadButton = new JButton("Cargar Experimentos");
