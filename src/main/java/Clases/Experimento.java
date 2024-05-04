@@ -10,7 +10,11 @@ public class Experimento implements Serializable {
 
     public Experimento(String nombre) {
         this.bacterias = new ArrayList<>();
-        this.nombre = this.nombre;
+        this.nombre = nombre;
+    }
+    @Override
+    public String toString() {
+        return nombre;
     }
 
     public void agregarBacteria(Bacteria bacteria) {
