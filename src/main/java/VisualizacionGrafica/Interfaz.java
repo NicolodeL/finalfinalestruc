@@ -252,8 +252,16 @@ public class Interfaz extends JFrame {
                 try (PrintWriter out = new PrintWriter(new FileWriter("src/main/resources/ExperimentosGuardados/experimento_" + experimento.getNombre() + ".txt", false))) {
                     out.println("Nombre del experimento: " + experimento.getNombre());
                     for (Bacteria bacteria : experimento.obtenerBacterias()) {
-                        String informacionBacteria = bacteria.getInformacionDetallada();
-                        out.println(informacionBacteria);
+                        out.println("Nombre de la bacteria: " + bacteria.getNombre());
+                        out.println("Fecha de inicio: " + bacteria.getFechaInicio());
+                        out.println("Fecha de fin: " + bacteria.getFechaFin());
+                        out.println("Número de bacterias iniciales: " + bacteria.getNumBacteriasIniciales());
+                        out.println("Temperatura: " + bacteria.getTemperatura());
+                        out.println("Condiciones de luminosidad: " + bacteria.getCondicionesLuminosidad());
+                        out.println("Comida inicial: " + bacteria.getComidaInicial());
+                        out.println("Día de incremento de comida: " + bacteria.getDiaIncrementoComida());
+                        out.println("Comida en el día de incremento: " + bacteria.getComidaDiaIncremento());
+                        out.println("Comida final: " + bacteria.getComidaFinal());
                     }
                 }
             } catch (IOException e) {

@@ -41,8 +41,81 @@ public class Bacteria implements Serializable {
         return nombre;
     }
 
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
+    public Date getFechaInicio() {
+        return fechaInicio;
+    }
 
+    public void setFechaInicio(Date fechaInicio) {
+        this.fechaInicio = fechaInicio;
+    }
+
+    public Date getFechaFin() {
+        return fechaFin;
+    }
+
+    public void setFechaFin(Date fechaFin) {
+        this.fechaFin = fechaFin;
+    }
+
+    public int getNumBacteriasIniciales() {
+        return numBacteriasIniciales;
+    }
+
+    public void setNumBacteriasIniciales(int numBacteriasIniciales) {
+        this.numBacteriasIniciales = numBacteriasIniciales;
+    }
+
+    public double getTemperatura() {
+        return temperatura;
+    }
+
+    public void setTemperatura(double temperatura) {
+        this.temperatura = temperatura;
+    }
+
+    public String getCondicionesLuminosidad() {
+        return condicionesLuminosidad;
+    }
+
+    public void setCondicionesLuminosidad(String condicionesLuminosidad) {
+        this.condicionesLuminosidad = condicionesLuminosidad;
+    }
+
+    public int getComidaInicial() {
+        return comidaInicial;
+    }
+
+    public void setComidaInicial(int comidaInicial) {
+        this.comidaInicial = comidaInicial;
+    }
+
+    public int getDiaIncrementoComida() {
+        return diaIncrementoComida;
+    }
+
+    public void setDiaIncrementoComida(int diaIncrementoComida) {
+        this.diaIncrementoComida = diaIncrementoComida;
+    }
+
+    public int getComidaDiaIncremento() {
+        return comidaDiaIncremento;
+    }
+
+    public void setComidaDiaIncremento(int comidaDiaIncremento) {
+        this.comidaDiaIncremento = comidaDiaIncremento;
+    }
+
+    public int getComidaFinal() {
+        return comidaFinal;
+    }
+
+    public void setComidaFinal(int comidaFinal) {
+        this.comidaFinal = comidaFinal;
+    }
 
     public int calcularComida(int dia) {
         // Implementar la lógica para calcular la cantidad de comida en el día dado
@@ -129,6 +202,8 @@ public class Bacteria implements Serializable {
 
         return new Bacteria(nombre, fechaInicio, fechaFin, numBacteriasIniciales, temperatura, condicionesLuminosidad, comidaInicial, diaIncrementoComida, comidaDiaIncremento, comidaFinal);
     }
+
+
 }
 
 
