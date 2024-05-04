@@ -9,13 +9,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 
 public class Interfaz extends JFrame {
     private JList<Experimento> experimentoList;
@@ -27,9 +27,15 @@ public class Interfaz extends JFrame {
     private JButton informacionButton;
 
 
+
+
+
+
     public Interfaz() {
         super("Gestión de Experimentos");
         setLayout(new BorderLayout());
+
+
 
         experimentoList = new JList<>();
         bacteriaList = new JList<>();
@@ -98,6 +104,23 @@ public class Interfaz extends JFrame {
                     }
                 } else {
                     JOptionPane.showMessageDialog(Interfaz.this, "No se ha seleccionado ninguna población para borrar.");
+                }
+            }
+        });
+        informacionButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Experimento experimentoSeleccionado = experimentoList.getSelectedValue();
+                Bacteria bacteriaSeleccionada = bacteriaList.getSelectedValue();
+                if (experimentoSeleccionado != null && bacteriaSeleccionada != null) {
+                    String informacionBacteria = bacteriaSeleccionada.toString(); // Asume que tienes un método toString() en la clase Bacteria que devuelve toda la información de la bacteria
+                    JOptionPane.showMessageDialog(null, informacionBacteria);
+
+                    try (PrintWriter out = new PrintWriter(new FileWriter("experimento_" + experimentoSeleccionado.getNombre() + ".txt", true))) {
+                        out.println(informacionBacteria);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
                 }
             }
         });

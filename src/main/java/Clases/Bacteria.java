@@ -15,6 +15,7 @@ public class Bacteria implements Serializable {
     private int comidaDiaIncremento;
     private int comidaFinal;
 
+
     public Bacteria(String nombre, Date fechaInicio, Date fechaFin, int numBacteriasIniciales, double temperatura, String condicionesLuminosidad, int comidaInicial, int diaIncrementoComida, int comidaDiaIncremento, int comidaFinal) {
         this.nombre = nombre;
         this.fechaInicio = fechaInicio;
@@ -38,8 +39,6 @@ public class Bacteria implements Serializable {
         // Implementar la lógica para calcular la cantidad de comida en el día dado
         return 0; // Cambiar esto por la implementación correcta
     }
-
-
 
 }
 
