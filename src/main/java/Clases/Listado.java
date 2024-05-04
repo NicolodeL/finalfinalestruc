@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Listado {
-    private List<Bacteria> bacterias;
+    private List<Experimento> experimentos;
 
     public Listado() {
-        this.bacterias = new ArrayList<>();
+        this.experimentos = new ArrayList<>();
     }
 
-    public void agregarBacteria(Bacteria bacteria) {
-        this.bacterias.add(bacteria);
+    public void agregarExperimento(Experimento experimento) {
+        this.experimentos.add(experimento);
     }
 
-    public List<Bacteria> obtenerBacterias() {
-        return this.bacterias;
+    public List<Experimento> obtenerExperimentos() {
+        return this.experimentos;
     }
 }
