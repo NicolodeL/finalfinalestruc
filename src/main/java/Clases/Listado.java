@@ -1,9 +1,10 @@
 package Clases;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Listado {
+public class Listado implements Serializable {
     private List<Experimento> experimentos;
 
     public Listado() {

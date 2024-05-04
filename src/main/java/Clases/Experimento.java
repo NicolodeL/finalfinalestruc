@@ -1,10 +1,11 @@
 package Clases;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Experimento {
+public class Experimento implements Serializable {
     private List<Bacteria> bacterias;
 
     public Experimento() {

@@ -1,10 +1,11 @@
 package Clases;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
 
-public class Bacteria {
+public class Bacteria implements Serializable {
     private String nombre;
     private Date fechaInicio;
     private Date fechaFin;
