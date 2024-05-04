@@ -8,10 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -253,7 +250,7 @@ public class Interfaz extends JFrame {
             Experimento experimento = model.getElementAt(i);
             try {
                 String informacion = experimento.getInformacionDetallada();
-                try (PrintWriter out = new PrintWriter(new FileWriter("experimento_" + experimento.getNombre() + ".txt", true))) {
+                try (PrintWriter out = new PrintWriter(new FileWriter("src/main/resources/ExperimentosGuardados/experimento_" + experimento.getNombre() + ".txt", true))) {
                     out.println(informacion);
                 }
             } catch (IOException e) {
@@ -270,9 +267,18 @@ public class Interfaz extends JFrame {
             for (File file : listOfFiles) {
                 if (file.isFile()) {
                     try {
-                        Experimento experimento = Almacenamiento.cargarExperimento(file.getPath());
+                        BufferedReader reader = new BufferedReader(new FileReader(file));
+                        String nombreExperimento = reader.readLine().split(": ")[1]; // asumimos que la primera línea del archivo es el nombre del experimento
+                        Experimento experimento = new Experimento(nombreExperimento);
+
+                        String line;
+                        while ((line = reader.readLine()) != null) {
+                            // Aquí puedes procesar cada línea del archivo y agregar la información al objeto experimento
+                            // Por ejemplo, si cada línea representa una bacteria, puedes crear un nuevo objeto Bacteria y agregarlo al experimento
+                        }
+
                         ((DefaultListModel<Experimento>) experimentoList.getModel()).addElement(experimento);
-                    } catch (IOException | ClassNotFoundException e) {
+                    } catch (IOException e) {
                         JOptionPane.showMessageDialog(this, "Error al cargar el experimento " + file.getName());
                     }
                 }
