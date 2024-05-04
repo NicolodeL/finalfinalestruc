@@ -81,7 +81,16 @@ public class Interfaz extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 Bacteria bacteriaSeleccionada = bacteriaList.getSelectedValue();
                 if (bacteriaSeleccionada != null) {
+                    // Elimina la bacteria de la lista en la interfaz
                     ((DefaultListModel<Bacteria>) bacteriaList.getModel()).removeElement(bacteriaSeleccionada);
+
+                    // Obtiene el experimento seleccionado
+                    Experimento experimentoSeleccionado = experimentoList.getSelectedValue();
+
+                    // Elimina la bacteria del experimento seleccionado
+                    if (experimentoSeleccionado != null) {
+                        experimentoSeleccionado.obtenerBacterias().remove(bacteriaSeleccionada);
+                    }
                 } else {
                     JOptionPane.showMessageDialog(Interfaz.this, "No se ha seleccionado ninguna población para borrar.");
                 }
