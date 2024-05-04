@@ -6,6 +6,7 @@ import Experimentos.Almacenamiento;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -192,6 +193,20 @@ public class Interfaz extends JFrame {
     }
 
     private void cargarExperimentos() {
-        // Aquí irá el código para cargar los experimentos
+        File folder = new File("Experimentos/");
+        File[] listOfFiles = folder.listFiles();
+
+        if (listOfFiles != null) {
+            for (File file : listOfFiles) {
+                if (file.isFile()) {
+                    try {
+                        Experimento experimento = Almacenamiento.cargarExperimento(file.getName());
+                        ((DefaultListModel<Experimento>) experimentoList.getModel()).addElement(experimento);
+                    } catch (IOException | ClassNotFoundException e) {
+                        JOptionPane.showMessageDialog(this, "Error al cargar el experimento " + file.getName());
+                    }
+                }
+            }
+        }
     }
 }
