@@ -7,7 +7,7 @@ import java.io.*;
 
 public class Almacenamiento {
     public static void guardarExperimento(Experimento experimento, String nombreArchivo) throws IOException {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("Experimentos/" + nombreArchivo))) {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(nombreArchivo))) {
             oos.writeObject(experimento);
         }
     }

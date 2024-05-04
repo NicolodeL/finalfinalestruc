@@ -79,12 +79,7 @@ public class Interfaz extends JFrame {
         DefaultListModel<Experimento> model = (DefaultListModel<Experimento>) experimentoList.getModel();
         model.addElement(experimento);
 
-        // Guardar el experimento en un archivo
-        try {
-            Almacenamiento.guardarExperimento(experimento, experimento.getNombre() + ".ser");
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(this, "Error al guardar el experimento");
-        }
+
     }
 
     private void agregarBacteria() throws ParseException {
@@ -172,12 +167,6 @@ public class Interfaz extends JFrame {
         }
         bacteriaModel.addElement(bacteria);
 
-        // Guardar el experimento actualizado en un archivo
-        try {
-            Almacenamiento.guardarExperimento(experimento, experimento.getNombre() + ".ser");
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(this, "Error al guardar el experimento");
-        }
     }
 
     private void guardarExperimentos() {
