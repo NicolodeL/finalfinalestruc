@@ -15,8 +15,8 @@ public class Almacenamiento {
         }
     }
 
-    public static Experimento cargarExperimento(String nombreArchivo) throws IOException, ClassNotFoundException {
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("src/main/resources/ExperimentosGuardados/" + nombreArchivo))) {
+    public static Experimento cargarExperimento(String rutaArchivo) throws IOException, ClassNotFoundException {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(rutaArchivo))) {
             return (Experimento) ois.readObject();
         }
     }

@@ -28,6 +28,7 @@ public class Bacteria implements Serializable {
         this.comidaFinal = comidaFinal;
     }
 
+
     @Override
     public String toString() {
         return nombre;
@@ -37,4 +38,8 @@ public class Bacteria implements Serializable {
         // Implementar la lógica para calcular la cantidad de comida en el día dado
         return 0; // Cambiar esto por la implementación correcta
     }
+
+
+
 }
+

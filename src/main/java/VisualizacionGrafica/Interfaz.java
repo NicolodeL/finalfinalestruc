@@ -14,6 +14,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 
 public class Interfaz extends JFrame {
     private JList<Experimento> experimentoList;
@@ -22,6 +24,7 @@ public class Interfaz extends JFrame {
     private JButton saveButton;
     private JButton loadButton;
     private JButton borrarPoblacionButton;
+    private JButton informacionButton;
 
 
     public Interfaz() {
@@ -35,6 +38,7 @@ public class Interfaz extends JFrame {
         saveButton = new JButton("Guardar Experimentos");
         loadButton = new JButton("Cargar Experimentos");
         borrarPoblacionButton = new JButton("Borrar Población");
+        informacionButton = new JButton("Información");
 
         add(new JScrollPane(experimentoList), BorderLayout.CENTER);
 
@@ -43,6 +47,7 @@ public class Interfaz extends JFrame {
         buttonPanel.add(saveButton);
         buttonPanel.add(loadButton);
         buttonPanel.add(borrarPoblacionButton);
+        buttonPanel.add(informacionButton);
         add(buttonPanel, BorderLayout.SOUTH);
 
         addButton.addActionListener(e -> {
@@ -96,6 +101,9 @@ public class Interfaz extends JFrame {
                 }
             }
         });
+
+
+
         saveButton.addActionListener(e -> guardarExperimentos());
         loadButton.addActionListener(e -> cargarExperimentos());
     }
@@ -216,7 +224,7 @@ public class Interfaz extends JFrame {
             for (File file : listOfFiles) {
                 if (file.isFile()) {
                     try {
-                        Experimento experimento = Almacenamiento.cargarExperimento(file.getName());
+                        Experimento experimento = Almacenamiento.cargarExperimento(file.getPath());
                         ((DefaultListModel<Experimento>) experimentoList.getModel()).addElement(experimento);
                     } catch (IOException | ClassNotFoundException e) {
                         JOptionPane.showMessageDialog(this, "Error al cargar el experimento " + file.getName());
