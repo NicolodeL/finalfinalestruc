@@ -249,9 +249,13 @@ public class Interfaz extends JFrame {
         for (int i = 0; i < model.getSize(); i++) {
             Experimento experimento = model.getElementAt(i);
             try {
-                String informacion = experimento.getInformacionDetallada();
+                String informacionExperimento = experimento.getInformacionDetallada();
                 try (PrintWriter out = new PrintWriter(new FileWriter("src/main/resources/ExperimentosGuardados/experimento_" + experimento.getNombre() + ".txt", true))) {
-                    out.println(informacion);
+                    out.println(informacionExperimento);
+                    for (Bacteria bacteria : experimento.obtenerBacterias()) {
+                        String informacionBacteria = bacteria.getInformacionDetallada();
+                        out.println(informacionBacteria);
+                    }
                 }
             } catch (IOException e) {
                 JOptionPane.showMessageDialog(this, "Error al guardar el experimento " + experimento.getNombre());
