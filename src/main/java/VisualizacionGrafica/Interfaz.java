@@ -51,6 +51,13 @@ public class Interfaz extends JFrame {
         String[] condiciones = {"Alta", "Media", "Baja"};
         String condicionLuminosidad = (String) JOptionPane.showInputDialog(this, "Selecciona las condiciones de luminosidad", "Luminosidad", JOptionPane.QUESTION_MESSAGE, null, condiciones, condiciones[0]);
         String comidaInicial = JOptionPane.showInputDialog(this, "Introduce la cantidad inicial de comida que se le dará el primer día");
+        if (comidaInicial != null) {
+            int comidaInicialInt = Integer.parseInt(comidaInicial);
+            if (comidaInicialInt < 0 || comidaInicialInt >= 300) {
+                JOptionPane.showMessageDialog(this, "La cantidad inicial de comida debe ser un valor entero menor que 300");
+                return;
+            }
+        }
         String diaIncrementoComida = JOptionPane.showInputDialog(this, "Introduce el día hasta el cual se debe incrementar la cantidad de comida");
         String comidaDiaIncremento = JOptionPane.showInputDialog(this, "Introduce la comida de este día");
         String comidaFinal = JOptionPane.showInputDialog(this, "Introduce la cantidad final de comida en el día 30");
