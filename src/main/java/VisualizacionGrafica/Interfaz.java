@@ -279,11 +279,17 @@ public class Interfaz extends JFrame {
                         while ((line = reader.readLine()) != null) {
                             // Aquí puedes procesar cada línea del archivo y agregar la información al objeto experimento
                             // Por ejemplo, si cada línea representa una bacteria, puedes crear un nuevo objeto Bacteria y agregarlo al experimento
+                            if (line.startsWith("Nombre de la bacteria: ")) {
+                                Bacteria bacteria = Bacteria.fromInformacionDetallada(line);
+                                experimento.agregarBacteria(bacteria);
+                            }
                         }
 
                         ((DefaultListModel<Experimento>) experimentoList.getModel()).addElement(experimento);
                     } catch (IOException e) {
                         JOptionPane.showMessageDialog(this, "Error al cargar el experimento " + file.getName());
+                    } catch (ParseException e) {
+                        throw new RuntimeException(e);
                     }
                 }
             }

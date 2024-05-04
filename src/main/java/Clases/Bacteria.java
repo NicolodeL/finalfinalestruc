@@ -1,6 +1,8 @@
 package Clases;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Bacteria implements Serializable {
@@ -65,7 +67,27 @@ public class Bacteria implements Serializable {
             informacion.append("Dosis de alimento para el día ").append(dia).append(": ").append(dosisDia).append("\n");
         }
 
+
+
+
+
         return informacion.toString();
+    }
+
+    public static Bacteria fromInformacionDetallada(String informacion) throws ParseException {
+        String[] lines = informacion.split("\n");
+        String nombre = lines[0].split(": ")[1];
+        Date fechaInicio = new SimpleDateFormat("dd/MM/yyyy").parse(lines[1].split(": ")[1]);
+        Date fechaFin = new SimpleDateFormat("dd/MM/yyyy").parse(lines[2].split(": ")[1]);
+        int numBacteriasIniciales = Integer.parseInt(lines[3].split(": ")[1]);
+        double temperatura = Double.parseDouble(lines[4].split(": ")[1]);
+        String condicionesLuminosidad = lines[5].split(": ")[1];
+        int comidaInicial = Integer.parseInt(lines[6].split(": ")[1]);
+        int diaIncrementoComida = Integer.parseInt(lines[7].split(": ")[1]);
+        int comidaDiaIncremento = Integer.parseInt(lines[8].split(": ")[1]);
+        int comidaFinal = Integer.parseInt(lines[9].split(": ")[1]);
+
+        return new Bacteria(nombre, fechaInicio, fechaFin, numBacteriasIniciales, temperatura, condicionesLuminosidad, comidaInicial, diaIncrementoComida, comidaDiaIncremento, comidaFinal);
     }
 }
 
