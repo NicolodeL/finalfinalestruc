@@ -1,13 +1,16 @@
 package Experimentos;
 
-
 import Clases.Experimento;
 
 import java.io.*;
 
 public class Almacenamiento {
     public static void guardarExperimento(Experimento experimento, String nombreArchivo) throws IOException {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(nombreArchivo))) {
+        File directory = new File("src/main/java/ExperimentosGuardados");
+        if (!directory.exists()) {
+            directory.mkdirs();
+        }
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(directory.getPath() + "/" + nombreArchivo))) {
             oos.writeObject(experimento);
         }
     }
