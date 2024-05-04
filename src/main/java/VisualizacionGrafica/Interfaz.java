@@ -6,6 +6,8 @@ import Experimentos.Almacenamiento;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
@@ -19,6 +21,8 @@ public class Interfaz extends JFrame {
     private JButton addButton;
     private JButton saveButton;
     private JButton loadButton;
+    private JButton borrarPoblacionButton;
+
 
     public Interfaz() {
         super("Gestión de Experimentos");
@@ -30,6 +34,7 @@ public class Interfaz extends JFrame {
         addButton = new JButton("Agregar Experimento");
         saveButton = new JButton("Guardar Experimentos");
         loadButton = new JButton("Cargar Experimentos");
+        borrarPoblacionButton = new JButton("Borrar Población");
 
         add(new JScrollPane(experimentoList), BorderLayout.CENTER);
 
@@ -37,6 +42,7 @@ public class Interfaz extends JFrame {
         buttonPanel.add(addButton);
         buttonPanel.add(saveButton);
         buttonPanel.add(loadButton);
+        buttonPanel.add(borrarPoblacionButton);
         add(buttonPanel, BorderLayout.SOUTH);
 
         addButton.addActionListener(e -> {
@@ -67,6 +73,18 @@ public class Interfaz extends JFrame {
                 agregarBacteria();
             } catch (ParseException ex) {
                 throw new RuntimeException(ex);
+            }
+        });
+
+        borrarPoblacionButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Bacteria bacteriaSeleccionada = bacteriaList.getSelectedValue();
+                if (bacteriaSeleccionada != null) {
+                    ((DefaultListModel<Bacteria>) bacteriaList.getModel()).removeElement(bacteriaSeleccionada);
+                } else {
+                    JOptionPane.showMessageDialog(Interfaz.this, "No se ha seleccionado ninguna población para borrar.");
+                }
             }
         });
         saveButton.addActionListener(e -> guardarExperimentos());
