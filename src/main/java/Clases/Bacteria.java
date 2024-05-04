@@ -45,6 +45,18 @@ public class Bacteria implements Serializable {
         // Implementar la lógica para calcular la cantidad de comida en el día dado
         return 0; // Cambiar esto por la implementación correcta
     }
+    public String getInformacionDetallada() {
+        return "Nombre de la bacteria: " + nombre + "\n" +
+                "Fecha de inicio: " + fechaInicio + "\n" +
+                "Fecha de fin: " + fechaFin + "\n" +
+                "Número de bacterias iniciales: " + numBacteriasIniciales + "\n" +
+                "Temperatura: " + temperatura + "\n" +
+                "Condiciones de luminosidad: " + condicionesLuminosidad + "\n" +
+                "Comida inicial: " + comidaInicial + "\n" +
+                "Día de incremento de comida: " + diaIncrementoComida + "\n" +
+                "Comida en el día de incremento: " + comidaDiaIncremento + "\n" +
+                "Comida final: " + comidaFinal;
+    }
 
 
 

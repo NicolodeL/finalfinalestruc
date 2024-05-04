@@ -130,16 +130,13 @@ public class Interfaz extends JFrame {
         informacionButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Experimento experimentoSeleccionado = experimentoList.getSelectedValue();
                 Bacteria bacteriaSeleccionada = bacteriaList.getSelectedValue();
-                if (experimentoSeleccionado != null && bacteriaSeleccionada != null) {
-                    String informacionExperimento = experimentoSeleccionado.toString(); // Asume que tienes un método toString() en la clase Experimento que devuelve toda la información del experimento
-                    String informacionBacteria = bacteriaSeleccionada.toString(); // Asume que tienes un método toString() en la clase Bacteria que devuelve toda la información de la bacteria
-                    String informacion = informacionExperimento + "\n" + informacionBacteria;
-                    JOptionPane.showMessageDialog(null, informacion);
+                if (bacteriaSeleccionada != null) {
+                    String informacionBacteria = bacteriaSeleccionada.getInformacionDetallada();
+                    JOptionPane.showMessageDialog(null, informacionBacteria);
 
-                    try (PrintWriter out = new PrintWriter(new FileWriter("experimento_" + experimentoSeleccionado.getNombre() + ".txt", true))) {
-                        out.println(informacion);
+                    try (PrintWriter out = new PrintWriter(new FileWriter("bacteria_" + bacteriaSeleccionada.getNombre() + ".txt", true))) {
+                        out.println(informacionBacteria);
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
