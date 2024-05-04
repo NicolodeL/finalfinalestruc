@@ -153,12 +153,18 @@ public class Interfaz extends JFrame {
 
         Bacteria bacteria = new Bacteria(nombre, fechaInicio, fechaFin, numBacteriasIniciales, temperatura, condicionLuminosidad, comidaInicial, diaIncrementoComida, comidaDiaIncremento, comidaFinal);
         experimento.agregarBacteria(bacteria);
+
         DefaultListModel<Experimento> model = (DefaultListModel<Experimento>) experimentoList.getModel();
-        model.addElement(experimento);
+
 
 
         bacteria = new Bacteria(nombre, fechaInicio, fechaFin, numBacteriasIniciales, temperatura, condicionLuminosidad, comidaInicial, diaIncrementoComida, comidaDiaIncremento, comidaFinal);
         experimento.agregarBacteria(bacteria);
+
+        int index = model.indexOf(experimento);
+        if (index != -1) {
+            model.set(index, experimento);
+        }
 
         // Guardar el experimento actualizado en un archivo
         try {
