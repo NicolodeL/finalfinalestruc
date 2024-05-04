@@ -30,10 +30,16 @@ public class Bacteria implements Serializable {
     }
 
 
-    @Override
     public String toString() {
         return nombre;
     }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+
+
 
     public int calcularComida(int dia) {
         // Implementar la lógica para calcular la cantidad de comida en el día dado

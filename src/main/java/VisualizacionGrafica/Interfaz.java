@@ -146,70 +146,78 @@ public class Interfaz extends JFrame {
             JOptionPane.showMessageDialog(this, "Por favor, selecciona un experimento");
             return;
         }
-        String nombre = JOptionPane.showInputDialog(this, "Introduce el nombre de la población");
+
+        // Definición de las variables de la bacteria
+        String nombre;
+        Date fechaInicio;
+        Date fechaFin;
+        int numBacteriasIniciales;
+        double temperatura;
+        String condicionLuminosidad;
+        int comidaInicial;
+        int diaIncrementoComida;
+        int comidaDiaIncremento;
+        int comidaFinal;
+
+        nombre = JOptionPane.showInputDialog(this, "Introduce el nombre de la población");
+
         String fechaInicioStr = JOptionPane.showInputDialog(this, "Introduce la fecha de inicio de la población (dd/MM/yyyy)");
-        Date fechaInicio = null;
         try {
             fechaInicio = new SimpleDateFormat("dd/MM/yyyy").parse(fechaInicioStr);
         } catch (ParseException e) {
             JOptionPane.showMessageDialog(this, "La fecha de inicio debe estar en el formato correcto (dd/MM/yyyy)");
             return;
         }
+
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(fechaInicio);
         calendar.add(Calendar.DATE, 30);
-        Date fechaFin = calendar.getTime();
+        fechaFin = calendar.getTime();
 
-        String numBacteriasInicialesStr = JOptionPane.showInputDialog(this, "Introduce el número de bacterias iniciales");
-        int numBacteriasIniciales = Integer.parseInt(numBacteriasInicialesStr);
+        numBacteriasIniciales = Integer.parseInt(JOptionPane.showInputDialog(this, "Introduce el número de bacterias iniciales"));
         if (numBacteriasIniciales < 0) {
             JOptionPane.showMessageDialog(this, "El número de bacterias iniciales no puede ser negativo");
             return;
         }
 
-        String temperaturaStr = JOptionPane.showInputDialog(this, "Introduce la temperatura a la que se someterán las bacterias");
-        int temperatura = Integer.parseInt(temperaturaStr);
+        temperatura = Double.parseDouble(JOptionPane.showInputDialog(this, "Introduce la temperatura a la que se someterán las bacterias"));
         if (temperatura < 0) {
             JOptionPane.showMessageDialog(this, "La temperatura no puede ser negativa");
             return;
         }
 
         String[] condiciones = {"Alta", "Media", "Baja"};
-        String condicionLuminosidad = (String) JOptionPane.showInputDialog(this, "Selecciona las condiciones de luminosidad", "Luminosidad", JOptionPane.QUESTION_MESSAGE, null, condiciones, condiciones[0]);
+        condicionLuminosidad = (String) JOptionPane.showInputDialog(this, "Selecciona las condiciones de luminosidad", "Luminosidad", JOptionPane.QUESTION_MESSAGE, null, condiciones, condiciones[0]);
 
-        String comidaInicialStr = JOptionPane.showInputDialog(this, "Introduce la cantidad inicial de comida que se le dará el primer día");
-        int comidaInicial = Integer.parseInt(comidaInicialStr);
+        comidaInicial = Integer.parseInt(JOptionPane.showInputDialog(this, "Introduce la cantidad inicial de comida que se le dará el primer día"));
         if (comidaInicial < 0 || comidaInicial >= 300) {
             JOptionPane.showMessageDialog(this, "La cantidad inicial de comida debe ser un valor entero menor que 300");
             return;
         }
 
-        String diaIncrementoComidaStr = JOptionPane.showInputDialog(this, "Introduce el día hasta el cual se debe incrementar la cantidad de comida");
-        int diaIncrementoComida = Integer.parseInt(diaIncrementoComidaStr);
+        diaIncrementoComida = Integer.parseInt(JOptionPane.showInputDialog(this, "Introduce el día hasta el cual se debe incrementar la cantidad de comida"));
         if (diaIncrementoComida <= 0 || diaIncrementoComida >= 30) {
             JOptionPane.showMessageDialog(this, "El día hasta el cual se debe incrementar la cantidad de comida debe ser un valor entero mayor que 0 y menor que 30");
             return;
         }
 
-        String comidaDiaIncrementoStr = JOptionPane.showInputDialog(this, "Introduce la comida de este día");
-        int comidaDiaIncremento = Integer.parseInt(comidaDiaIncrementoStr);
+        comidaDiaIncremento = Integer.parseInt(JOptionPane.showInputDialog(this, "Introduce la comida de este día"));
         if (comidaDiaIncremento < 0 || comidaDiaIncremento >= 300) {
             JOptionPane.showMessageDialog(this, "La comida de este día debe ser un valor entero menor que 300");
             return;
         }
 
-        String comidaFinalStr = JOptionPane.showInputDialog(this, "Introduce la cantidad final de comida en el día 30");
-        int comidaFinal = Integer.parseInt(comidaFinalStr);
+        comidaFinal = Integer.parseInt(JOptionPane.showInputDialog(this, "Introduce la cantidad final de comida en el día 30"));
         if (comidaFinal < 0 || comidaFinal >= 300) {
             JOptionPane.showMessageDialog(this, "La cantidad final de comida en el día 30 debe ser un valor entero menor que 300");
             return;
         }
 
+        // Creación de la instancia de Bacteria usando las variables definidas
         Bacteria bacteria = new Bacteria(nombre, fechaInicio, fechaFin, numBacteriasIniciales, temperatura, condicionLuminosidad, comidaInicial, diaIncrementoComida, comidaDiaIncremento, comidaFinal);
         experimento.agregarBacteria(bacteria);
 
         DefaultListModel<Experimento> model = (DefaultListModel<Experimento>) experimentoList.getModel();
-
         int index = model.indexOf(experimento);
         if (index != -1) {
             model.set(index, experimento);
@@ -224,7 +232,6 @@ public class Interfaz extends JFrame {
             bacteriaList.setModel(bacteriaModel);
         }
         bacteriaModel.addElement(bacteria);
-
     }
 
     private void guardarExperimentos() {
