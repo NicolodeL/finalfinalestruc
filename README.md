@@ -30,5 +30,5 @@ https://github.com/NicolodeL/finalfinalestruc.git
 ## Pruebas en el codigo
 ### Cada clase del código tiene su propio test con su propia funcionalidad en la carpeta tests
 ## Conclusión
-### En conclusión el código tiene todas las funcionalidades que se demandan, una interfaz simple pero funcional e intuitiva, clases asignadas con nombres apropiados y un codigo funcional y sin errores. En cuanto al tiempo dedico a la práctica lo considero adecuado debido a que es solo 1 de dos partes de un Caso final. 
+### En conclusión el código tiene todas las funcionalidades que se demandan, una interfaz simple pero funcional e intuitiva, clases asignadas con nombres apropiados y un codigo funcional y sin errores. En cuanto al tiempo dedicado a la práctica lo considero adecuado debido a que es solo 1 de dos partes de un Caso final. 
 
