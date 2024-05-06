@@ -29,4 +29,6 @@ https://github.com/NicolodeL/finalfinalestruc.git
 ### En principio el código esta implementado sin errores exceptuando que para que se actualizen las poblaciones en el archivo ejecutable .jar necesitas crear más de un experimetno, también que al guardarse los archivos en el proyecto en la carpeta recursos en el ejecutable .jar no podras guardar los experimentos, en cuanto a las implementaciones en el codigo entregado todas las funcionalidades estan implementadas
 ## Pruebas en el codigo
 ### Cada clase del código tiene su propio test con su propia funcionalidad en la carpeta tests
+## Conclusión
+### En conclusión el código tiene todas las funcionalidades que se demandan, una interfaz simple pero funcional e intuitiva, clases asignadas con nombres apropiados y un codigo funcional y sin errores. En cuanto al tiempo dedico a la práctica lo considero adecuado debido a que es solo 1 de dos partes de un Caso final. 
 
